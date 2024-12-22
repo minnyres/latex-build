@@ -38,4 +38,4 @@ jobs:
           echo "set(VCPKG_BUILD_TYPE release)" >> triplets/x64-linux.cmake
           packages='zzplib'
           ./vcpkg upgrade 
-          ./vcpkg install `$packages --triplet arm64-mingw-dynamic --clean-after-build
+          ./vcpkg install $packages --triplet arm64-mingw-dynamic --clean-after-build
