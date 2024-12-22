@@ -35,8 +35,7 @@ jobs:
           # tell vcpkg to only build Release variants of the dependencies
           cd ${{ env.RUNVCPKG_VCPKG_ROOT }}
           echo "set(VCPKG_BUILD_TYPE release)" >> triplets/community/arm64-mingw-dynamic.cmake
-          cat triplets/community/arm64-mingw-dynamic.cmake
           echo "set(VCPKG_BUILD_TYPE release)" >> triplets/x64-linux.cmake
           packages='zzplib'
           ./vcpkg upgrade 
-          ./vcpkg.exe install `$packages --triplet arm64-mingw-dynamic --clean-after-build
+          ./vcpkg install `$packages --triplet arm64-mingw-dynamic --clean-after-build
