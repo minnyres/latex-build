@@ -36,6 +36,6 @@ jobs:
           cd ${{ env.RUNVCPKG_VCPKG_ROOT }}
           echo "set(VCPKG_BUILD_TYPE release)" >> triplets/community/arm64-mingw-dynamic.cmake
           echo "set(VCPKG_BUILD_TYPE release)" >> triplets/x64-linux.cmake
-          packages='zzplib'
+          packages='zziplib'
           ./vcpkg upgrade 
           ./vcpkg install $packages --triplet arm64-mingw-dynamic --clean-after-build
