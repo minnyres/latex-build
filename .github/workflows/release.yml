@@ -29,3 +29,14 @@ jobs:
                                   # to date with fixes on the v11 branch
         with:
           vcpkgGitCommitId: 'b322364f06308bdd24823f9d8f03fe0cc86fd46f'
+
+      - name: Install dependencies from vcpkg
+        run: |
+          # tell vcpkg to only build Release variants of the dependencies
+          cd ${{ env.RUNVCPKG_VCPKG_ROOT }}
+          echo "set(VCPKG_BUILD_TYPE release)" >> triplets/community/arm64-mingw-dynamic.cmake
+          cat triplets/community/arm64-mingw-dynamic.cmake
+          echo "set(VCPKG_BUILD_TYPE release)" >> triplets/x64-linux.cmake
+          packages='zzplib'
+          ./vcpkg upgrade 
+          ./vcpkg.exe install `$packages --triplet arm64-mingw-dynamic --clean-after-build
