@@ -23,11 +23,9 @@ jobs:
           tar -xf llvm-mingw-*.tar.xz
           mv llvm-mingw-20220906-ucrt-ubuntu-18.04-x86_64 llvm-mingw
           
-      # use the preinstalled vcpkg from image
-      # https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md#package-management
-      - name: Setup vcpkg
-        uses: lukka/run-vcpkg@v10
-        with:
-          doNotUpdateVcpkg: true  # the preinstalled vcpkg is updated regularly
+      - name: Setup anew (or from cache) vcpkg (and does not build any package)
+        uses: lukka/run-vcpkg@v11 # Always specify the specific _version_ of the
+                                  # action you need, `v11` in this case to stay up
+                                  # to date with fixes on the v11 branch
 
     
