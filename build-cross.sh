@@ -1,8 +1,6 @@
 #!/bin/bash -e
 
-
-
-prefix_dir=$PWD/mpv-depends
+prefix_dir=$PWD/texlive-depends
 mkdir -p "$prefix_dir"
 [ -z "$vcpkg_dir" ] && vcpkg_dir=$PWD/vcpkg
 vcpkg_libs_dir=$vcpkg_dir/installed/arm64-mingw-dynamic
@@ -11,7 +9,7 @@ vcpkg_libs_dir=$vcpkg_dir/installed/arm64-mingw-dynamic
 wget="wget -nc --progress=bar:force"
 gitclone="git clone --depth=1 --recursive"
 
-mpfr_ver=4.2.1
+tl_ver=texlive-2024.2
 
 export PATH=$llvm_dir/bin:$PATH
 export TARGET=aarch64-w64-mingw32
@@ -60,11 +58,8 @@ mkdir -p src
 mkdir -p $prefix_dir/lib/pkgconfig/ 
 cd src
 
-# mpfr
-[ -d mpfr-$mpfr_ver ] || $wget https://www.mpfr.org/mpfr-current/mpfr-$mpfr_ver.tar.xz
-tar xf mpfr-$mpfr_ver.tar.xz
-pushd mpfr-$mpfr_ver
-./configure $commonflags || true
-$TARGET-nm $vcpkg_libs_dir/lib/libgmp.a
-# gnumakeplusinstall
-popd
+# texlive
+[ -d texlive-source ] || $gitclone --branch $tl_ver https://github.com/TeX-Live/texlive-source.git
+pushd texlive-source
+./configure $commonflags --with-system-harfbuzz  --with-system-icu  --with-system-zziplib --with-system-graphite2 --with-system-cairo --with-system-pixman --with-system-gd --with-system-freetype2 --with-system-libpng  --with-system-zlib 
+gnumakeplusinstall
