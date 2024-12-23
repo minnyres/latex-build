@@ -36,11 +36,11 @@ jobs:
           # tell vcpkg to only build Release variants of the dependencies
           cd ${{ env.RUNVCPKG_VCPKG_ROOT }}
           # git apply ${{ github.workspace }}/patches/fix-vcpkg-mpfr.patch
-          echo "set(VCPKG_BUILD_TYPE release)" >> triplets/community/arm64-mingw-dynamic.cmake
+          echo "set(VCPKG_BUILD_TYPE release)" >> triplets/community/arm64-mingw-static.cmake
           echo "set(VCPKG_BUILD_TYPE release)" >> triplets/x64-linux.cmake
           packages='zziplib icu harfbuzz[graphite2] gmp cairo pixman libgd freetype libpng'
           ./vcpkg upgrade 
-          ./vcpkg install $packages --triplet arm64-mingw-dynamic --clean-after-build
+          ./vcpkg install $packages --triplet arm64-mingw-static --clean-after-build
 
       - name: Build
         run: |
