@@ -9,7 +9,7 @@ index 219b92d13..864e78ebd 100644
 +vcpkg_list(SET OPTIONS)
 +
 +if(VCPKG_TARGET_IS_MINGW AND VCPKG_LIBRARY_LINKAGE STREQUAL "dynamic")
-+    vcpkg_list(APPEND OPTIONS "--disable-static --enable-shared")
++    vcpkg_list(APPEND OPTIONS " --disable-static --enable-shared")
 +endif()
 +
  vcpkg_configure_make(
