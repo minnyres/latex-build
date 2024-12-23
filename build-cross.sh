@@ -33,7 +33,7 @@ export PKG_CONFIG_LIBDIR="$prefix_dir/lib/pkgconfig:$vcpkg_libs_dir/lib/pkgconfi
 export PKG_CONFIG_PATH=$PKG_CONFIG_LIBDIR
 
 # autotools(-like)
-commonflags="--prefix=$prefix_dir --host=$TARGET --enable-static=no --enable-shared"
+commonflags="--prefix=$prefix_dir --build=x86_64-linux-gnu --host=$TARGET --enable-static=no --enable-shared"
 
 # CMake
 cmake_args=(
@@ -64,6 +64,6 @@ cd src
 [ -d mpfr-$mpfr_ver ] || $wget https://www.mpfr.org/mpfr-current/mpfr-$mpfr_ver.tar.xz
 tar xf mpfr-$mpfr_ver.tar.xz
 pushd mpfr-$mpfr_ver
-./configure $commonflags 
+./configure $commonflags --with-gmp=$vcpkg_libs_dir
 gnumakeplusinstall
 popd
