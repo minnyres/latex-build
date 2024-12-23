@@ -30,8 +30,6 @@ export PKG_CONFIG=/usr/bin/pkg-config
 export PKG_CONFIG_LIBDIR="$prefix_dir/lib/pkgconfig:$vcpkg_libs_dir/lib/pkgconfig"
 export PKG_CONFIG_PATH=$PKG_CONFIG_LIBDIR
 
-ls $vcpkg_libs_dir/lib/pkgconfig
-
 # autotools(-like)
 commonflags="--prefix=$prefix_dir --build=x86_64-linux-gnu --host=$TARGET --enable-static=no --enable-shared"
 
@@ -65,6 +63,8 @@ cd src
 pushd texlive-source
 mkdir build
 cd build
+ls $vcpkg_libs_dir/lib
+ls $vcpkg_libs_dir/bin
 ../configure $commonflags --with-system-harfbuzz  --with-system-icu  --with-system-zziplib --with-system-graphite2 --with-system-cairo --with-system-pixman --with-system-gd --with-system-freetype2 --with-system-libpng  --with-system-zlib  || true
-cat config.log
+# cat config.log
 gnumakeplusinstall
