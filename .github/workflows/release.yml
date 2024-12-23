@@ -18,7 +18,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install \
-            build-essential cmake ninja-build pkg-config autoconf automake autoconf-archive make
+            build-essential cmake ninja-build pkg-config autoconf automake autoconf-archive make texlive-binaries
           wget https://github.com/mstorsjo/llvm-mingw/releases/download/20220906/llvm-mingw-20220906-ucrt-ubuntu-18.04-x86_64.tar.xz
           tar -xf llvm-mingw-*.tar.xz
           mv llvm-mingw-20220906-ucrt-ubuntu-18.04-x86_64 llvm-mingw
