@@ -65,6 +65,6 @@ cd src
 tar xf mpfr-$mpfr_ver.tar.xz
 pushd mpfr-$mpfr_ver
 ./configure $commonflags || true
-cat config.log
+$TARGET-nm $vcpkg_libs_dir/lib/libgmp.a
 # gnumakeplusinstall
 popd
