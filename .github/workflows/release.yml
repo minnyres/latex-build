@@ -42,6 +42,9 @@ jobs:
           packages='zziplib icu harfbuzz[graphite2] cairo pixman libgd freetype libpng'
           ./vcpkg upgrade 
           ./vcpkg install $packages --triplet arm64-mingw-dynamic --clean-after-build
+          cd installed/arm64-mingw-dynamic/lib/
+          ln libzlib.dll.a libz.a
+          ls -l libz*   
 
       - name: Build
         run: |
