@@ -64,6 +64,7 @@ cd src
 [ -d mpfr-$mpfr_ver ] || $wget https://www.mpfr.org/mpfr-current/mpfr-$mpfr_ver.tar.xz
 tar xf mpfr-$mpfr_ver.tar.xz
 pushd mpfr-$mpfr_ver
-./configure $commonflags --with-gmp=$vcpkg_libs_dir
-gnumakeplusinstall
+./configure $commonflags || true
+cat config.log
+# gnumakeplusinstall
 popd
