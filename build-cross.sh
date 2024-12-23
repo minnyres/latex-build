@@ -9,7 +9,7 @@ vcpkg_libs_dir=$vcpkg_dir/installed/arm64-mingw-dynamic
 wget="wget -nc --progress=bar:force"
 gitclone="git clone --depth=1 --recursive"
 
-tl_ver=texlive-2024.2
+tl_ver=branch2024
 
 export PATH=$llvm_dir/bin:$PATH
 export TARGET=aarch64-w64-mingw32
