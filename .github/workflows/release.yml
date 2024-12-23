@@ -39,4 +39,5 @@ jobs:
           echo "set(VCPKG_BUILD_TYPE release)" >> triplets/x64-linux.cmake
           packages='zziplib icu harfbuzz[graphite2] mpfr gmp cairo pixman libgd freetype libpng'
           ./vcpkg upgrade 
-          ./vcpkg install $packages --triplet arm64-mingw-dynamic --clean-after-build
+          ./vcpkg install $packages --triplet arm64-mingw-dynamic --clean-after-build || true
+          cat /home/runner/work/latex-build/latex-build/vcpkg/buildtrees/mpfr/config-arm64-mingw-dynamic-rel*log
