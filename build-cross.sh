@@ -61,5 +61,7 @@ cd src
 # texlive
 [ -d texlive-source ] || $gitclone --branch $tl_ver https://github.com/TeX-Live/texlive-source.git
 pushd texlive-source
-./configure $commonflags --with-system-harfbuzz  --with-system-icu  --with-system-zziplib --with-system-graphite2 --with-system-cairo --with-system-pixman --with-system-gd --with-system-freetype2 --with-system-libpng  --with-system-zlib 
+mkdir build
+cd build
+../configure $commonflags --with-system-harfbuzz  --with-system-icu  --with-system-zziplib --with-system-graphite2 --with-system-cairo --with-system-pixman --with-system-gd --with-system-freetype2 --with-system-libpng  --with-system-zlib 
 gnumakeplusinstall
