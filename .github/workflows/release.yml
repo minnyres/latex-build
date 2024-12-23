@@ -35,6 +35,7 @@ jobs:
           PATH=$PATH:${{ env.llvm_path }}/bin
           # tell vcpkg to only build Release variants of the dependencies
           cd ${{ env.RUNVCPKG_VCPKG_ROOT }}
+          git apply ${{ github.workspace }}/patches/fix-vcpkg-mpfr.patch
           echo "set(VCPKG_BUILD_TYPE release)" >> triplets/community/arm64-mingw-dynamic.cmake
           echo "set(VCPKG_BUILD_TYPE release)" >> triplets/x64-linux.cmake
           packages='zziplib icu harfbuzz[graphite2] mpfr gmp cairo pixman libgd freetype libpng'
