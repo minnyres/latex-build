@@ -63,6 +63,6 @@ cd src
 pushd texlive-source
 mkdir build
 cd build
-../configure $commonflags --with-system-harfbuzz  --with-system-icu  --with-system-zziplib --with-system-graphite2 --with-system-cairo --with-system-pixman --with-system-gd --with-system-freetype2 --with-system-libpng  --with-system-zlib  || true
+../configure $commonflags --disable-native-texlive-build --with-system-harfbuzz  --with-system-icu  --with-system-zziplib --with-system-graphite2 --with-system-cairo --with-system-pixman --with-system-gd --with-system-freetype2 --with-system-libpng  --with-system-zlib  || true
 cat config.log
 gnumakeplusinstall

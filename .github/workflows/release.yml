@@ -43,8 +43,7 @@ jobs:
           ./vcpkg upgrade 
           ./vcpkg install $packages --triplet arm64-mingw-dynamic --clean-after-build
           cd installed/arm64-mingw-dynamic/lib/
-          ln libzlib.dll.a libz.a
-          ls -l libz*   
+          ln libzlib.dll.a libz.dll.a
 
       - name: Build
         run: |
