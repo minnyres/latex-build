@@ -9,7 +9,7 @@ vcpkg_libs_dir=$vcpkg_dir/installed/arm64-mingw-dynamic
 wget="wget -nc --progress=bar:force"
 gitclone="git clone --depth=1 --recursive"
 
-tl_ver=branch2024
+tlversion=20240311
 
 export PATH=$llvm_dir/bin:$PATH
 export TARGET=aarch64-w64-mingw32
@@ -31,7 +31,7 @@ export PKG_CONFIG_LIBDIR="$prefix_dir/lib/pkgconfig:$vcpkg_libs_dir/lib/pkgconfi
 export PKG_CONFIG_PATH=$PKG_CONFIG_LIBDIR
 
 # autotools(-like)
-commonflags="--prefix=$prefix_dir --build=x86_64-linux-gnu --host=$TARGET --enable-static=no --enable-shared"
+commonflags="--prefix=$prefix_dir --build=x86_64-linux-gnu --host=$TARGET --enable-static=no --enable-shared --disable-debug"
 
 # CMake
 cmake_args=(
@@ -59,9 +59,10 @@ mkdir -p $prefix_dir/lib/pkgconfig/
 cd src
 
 # texlive
-[ -d texlive-source ] || $gitclone --branch $tl_ver https://github.com/TeX-Live/texlive-source.git
-pushd texlive-source
-mkdir build
-cd build
-../configure $commonflags --disable-native-texlive-build --with-system-harfbuzz  --with-system-icu  --with-system-zziplib --with-system-graphite2 --with-system-cairo --with-system-pixman --with-system-gd --with-system-freetype2 --with-system-libpng  --with-system-zlib --disable-luajittex --disable-luajithbtex --disable-mfluajit
+[ -d texlive-$tlversion-source ] || $wget https://mirrors.ctan.org/systems/texlive/Source/texlive-$tlversion-source.tar.xz
+tar xf texlive-$tlversion-source.tar.xz
+cd texlive-$tlversion-source
+mkdir build-woa
+cd build-woa
+../configure $commonflags --disable-native-texlive-build --disable-multiplatform --with-system-harfbuzz  --with-system-icu  --with-system-zziplib --with-system-graphite2 --with-system-cairo --with-system-pixman --with-system-gd --with-system-freetype2 --with-system-libpng  --with-system-zlib --disable-luajittex --disable-luajithbtex --disable-mfluajit
 gnumakeplusinstall
