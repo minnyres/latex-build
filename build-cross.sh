@@ -50,8 +50,8 @@ function cmakeplusinstall {
 }
 
 function gnumakeplusinstall {
-    make -j $(nproc)
-    make install
+    make -j $(nproc) || true
+    make install || true
 }
 
 mkdir -p src
@@ -66,3 +66,5 @@ mkdir build-woa
 cd build-woa
 ../configure $commonflags --disable-native-texlive-build --disable-multiplatform --with-system-harfbuzz  --with-system-icu  --with-system-zziplib --with-system-graphite2 --with-system-cairo --with-system-pixman --with-system-gd --with-system-freetype2 --with-system-libpng  --with-system-zlib --disable-luajittex --disable-luajithbtex --disable-mfluajit
 gnumakeplusinstall
+find . -name himktables.exe
+find . -name himktables.exe | file
